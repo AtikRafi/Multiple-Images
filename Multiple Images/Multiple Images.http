@@ -1,0 +1,6 @@
+@Multiple_Images_HostAddress = http://localhost:5002
+
+GET {{Multiple_Images_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
