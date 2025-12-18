@@ -84,9 +84,11 @@ namespace Multiple_Images.Controllers
                         displayOrder = f.DisplayOrder,
                     });
                 }
-                product.
+                product.variants.Add(variant);
             }
-           
+            db.Products.Add(product);
+            await db.SaveChangesAsync();
+            return Ok(product);
         }
 
         private async Task<string> SaveFileAsync(IFormFile file, string className)
@@ -99,7 +101,7 @@ namespace Multiple_Images.Controllers
             Directory.CreateDirectory(folderPath);
 
             // Generate unique file name
-            var fileName = $"{Guid.NewGuid()}{Path.GetExtension(file.FileName)}";
+            var fileName = $"{Guid.NewGuid()}{Path.GetFileName(file.FileName)}";
             var filePath = Path.Combine(folderPath, fileName);
 
             // Save the file
